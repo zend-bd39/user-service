@@ -1,0 +1,14 @@
+services:
+  postgres:
+    container_name: postgres-user
+    image: postgres:18
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: user123
+      POSTGRES_DB: user_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - pgdata_user:/var/lib/postgresql
+volumes:
+  pgdata_user:
