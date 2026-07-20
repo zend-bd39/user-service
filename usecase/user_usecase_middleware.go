@@ -9,9 +9,7 @@ import (
 	"golang.org/x/crypto/bcrypt"
 )
 
-
-
-type UserUsecase struct {
+type userUsecaseMid struct {
 	userRepo domain.UserRepository
 	registerExecutor RegisterFn
 }
@@ -19,10 +17,10 @@ type UserUsecase struct {
 type RegisterFn func(ctx context.Context, username, email, password string) (domain.User, error)
 type RegisterMiddleware func(RegisterFn) RegisterFn
 
-func (u *UserUsecase) Register(ctx context.Context, username, email, password string) (domain.User, error) {
+func (u *userUsecaseMid) Register(ctx context.Context, username, email, password string) (domain.User, error) {
 	return u.registerExecutor(ctx, username, email, password)
 }
-func NewUserUsecaseMid(repo domain.UserRepository, regMids ...RegisterMiddleware) *UserUsecase {
+func NewUserUsecaseMid(repo domain.UserRepository, regMids ...RegisterMiddleware) *userUsecaseMid {
 	regCore := func(ctx context.Context, username, email, password string) (domain.User, error) {
 		user := domain.User{
 			Username: username,
@@ -46,7 +44,7 @@ func NewUserUsecaseMid(repo domain.UserRepository, regMids ...RegisterMiddleware
 		regCore = m(regCore)
 	}
 	
-	return &UserUsecase{
+	return &userUsecaseMid{
 		userRepo: repo,
 		registerExecutor: regCore,
 	}

@@ -7,8 +7,14 @@ option go_package = "user-service/proto/v1;userpb";
 service UserService {
     rpc Register (RegisterRequest) returns (RegisterResponse);
     rpc Login (LoginRequest) returns (LoginResponse);
+    rpc RefreshAccessToken (RefreshAccessTokenRequest) returns (RefreshAccessTokenResponse);
 }
-
+message RefreshAccessTokenRequest {
+  string refresh_token = 1;
+}
+message RefreshAccessTokenResponse {
+  string access_token = 1;
+}
 message RegisterRequest {
   string username = 1;
   string email = 2;

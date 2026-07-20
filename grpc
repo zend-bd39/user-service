@@ -1,0 +1,9 @@
+grpcurl -plaintext -d '{"username":"joko","email":"","password":""}' localhost:50052 proto.v1.UserService.Register
+
+---
+proto.v1.UserService.Login
+proto.v1.UserService.RefreshAccessToken
+proto.v1.UserService.Register
+
+---
+grpcurl -plaintext -d '{"username":"joko", "email":"joko@example.com","password":"123456"}' localhost:50052 proto.v1.UserService.Register

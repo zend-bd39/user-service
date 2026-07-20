@@ -17,8 +17,15 @@ type User struct {
 	Role         string
 }
 
+
 type UserRepository interface {
 	Create(ctx context.Context, user User) (User, error)
 	FindByUsername(ctx context.Context, username string) (User, error)
 	FindByID(ctx context.Context, id int)(User, error)
+}
+
+type UserUsecase interface {
+	Register(ctx context.Context, username, email, password string) (User, error)
+	Login(ctx context.Context, username, password string) (accessToken, refreshToken string, err error)
+	RefreshAccessToken(ctx context.Context, refreshToken string) (string, error)
 }

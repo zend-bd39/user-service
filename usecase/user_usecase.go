@@ -24,6 +24,8 @@ type userUsecase struct {
 	jwtService *pkg.JWTService
 }
 
+var _ domain.UserUsecase = (*userUsecase)(nil)
+
 func NewUserUsecase(repo domain.UserRepository, jwtSrv *pkg.JWTService) *userUsecase {
 	return &userUsecase{
 		repo: repo,

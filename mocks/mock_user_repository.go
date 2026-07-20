@@ -85,3 +85,73 @@ func (mr *MockUserRepositoryMockRecorder) FindByUsername(ctx, username any) *gom
 	mr.mock.ctrl.T.Helper()
 	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "FindByUsername", reflect.TypeOf((*MockUserRepository)(nil).FindByUsername), ctx, username)
 }
+
+// MockUserUsecase is a mock of UserUsecase interface.
+type MockUserUsecase struct {
+	ctrl     *gomock.Controller
+	recorder *MockUserUsecaseMockRecorder
+	isgomock struct{}
+}
+
+// MockUserUsecaseMockRecorder is the mock recorder for MockUserUsecase.
+type MockUserUsecaseMockRecorder struct {
+	mock *MockUserUsecase
+}
+
+// NewMockUserUsecase creates a new mock instance.
+func NewMockUserUsecase(ctrl *gomock.Controller) *MockUserUsecase {
+	mock := &MockUserUsecase{ctrl: ctrl}
+	mock.recorder = &MockUserUsecaseMockRecorder{mock}
+	return mock
+}
+
+// EXPECT returns an object that allows the caller to indicate expected use.
+func (m *MockUserUsecase) EXPECT() *MockUserUsecaseMockRecorder {
+	return m.recorder
+}
+
+// Login mocks base method.
+func (m *MockUserUsecase) Login(ctx context.Context, username, password string) (string, string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Login", ctx, username, password)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(string)
+	ret2, _ := ret[2].(error)
+	return ret0, ret1, ret2
+}
+
+// Login indicates an expected call of Login.
+func (mr *MockUserUsecaseMockRecorder) Login(ctx, username, password any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Login", reflect.TypeOf((*MockUserUsecase)(nil).Login), ctx, username, password)
+}
+
+// RefreshAccessToken mocks base method.
+func (m *MockUserUsecase) RefreshAccessToken(ctx context.Context, refreshToken string) (string, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "RefreshAccessToken", ctx, refreshToken)
+	ret0, _ := ret[0].(string)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// RefreshAccessToken indicates an expected call of RefreshAccessToken.
+func (mr *MockUserUsecaseMockRecorder) RefreshAccessToken(ctx, refreshToken any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "RefreshAccessToken", reflect.TypeOf((*MockUserUsecase)(nil).RefreshAccessToken), ctx, refreshToken)
+}
+
+// Register mocks base method.
+func (m *MockUserUsecase) Register(ctx context.Context, username, email, password string) (domain.User, error) {
+	m.ctrl.T.Helper()
+	ret := m.ctrl.Call(m, "Register", ctx, username, email, password)
+	ret0, _ := ret[0].(domain.User)
+	ret1, _ := ret[1].(error)
+	return ret0, ret1
+}
+
+// Register indicates an expected call of Register.
+func (mr *MockUserUsecaseMockRecorder) Register(ctx, username, email, password any) *gomock.Call {
+	mr.mock.ctrl.T.Helper()
+	return mr.mock.ctrl.RecordCallWithMethodType(mr.mock, "Register", reflect.TypeOf((*MockUserUsecase)(nil).Register), ctx, username, email, password)
+}

@@ -1,0 +1,6 @@
+{
+  "protobuf.externalLinter.enabled": true,
+  "protobuf.externalLinter.linter": "buf",
+  "protobuf.externalLinter.bufPath": "C:\\Users\\RK VictoryEngine BP3\\go\\bin\\buf.exe",
+  "protobuf.buf.path": "C:\\Users\\RK VictoryEngine BP3\\go\\bin\\buf.exe"
+}
