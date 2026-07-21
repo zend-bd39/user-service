@@ -39,14 +39,14 @@ func (a *App) SetupGRPC(ctx context.Context) error {
 		"/proto.v1.UserService/Login": true,
 		"/proto.v1.UserService/RefreshAccessToken": true,
 	}
-	publicRoles := map[string][]string{
+	requireRole := map[string][]string{
 		"/proto.v1.UserService/Admin" : {"admin"},
 	}
 	a.grpcServer = grpc.NewServer(
 		grpc.ChainUnaryInterceptor(
 			interceptor.RecoveryInterceptor(),
 			interceptor.AuthInterceptor(a.jwtService, publicMethod),
-			interceptor.RBACInterceptor(publicRoles),
+			interceptor.RBACInterceptor(requireRole),
 		),
 	)
 	if a.cfg.AppConfig.Env == "development" {
